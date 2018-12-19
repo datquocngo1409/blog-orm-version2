@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Blog</title>
+</head>
+<body>
+    <a href="/blogs">Back to list</a>
+    <th:block th:if="${messgae}">
+        <h2 th:text="${messgae}"></h2>
+    </th:block>
+    <form th:action="@{/edit/__${blog.id}__}" th:object="${blog}" th:method="post">
+        <input type="hidden" name="id" th:field="*{id}">
+        <table>
+            <tr>
+                <td>Name: </td>
+                <td><input type="text" th:field="*{name}"></td>
+            </tr>
+            <tr>
+                <td>Decripstion: </td>
+                <td><input type="text" th:field="*{decripstion}"></td>
+            </tr>
+            <tr>
+                <td>Infomation: </td>
+                <td><input type="text" th:field="*{infomation}"></td>
+            </tr>
+            <tr>
+                <td>Time Created: </td>
+                <td><input type="text" th:field="*{time}" th:value="${blog.time.toLocaleString()}"></td>
+            </tr>
+            <tr>
+                <td>Content: </td>
+                <td><input type="text" th:field="*{content.content}"></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><input type="submit" value="Edit"></td>
+            </tr>
+        </table>
+    </form>
+</body>
+</html>
